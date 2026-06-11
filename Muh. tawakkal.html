@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muh. Tawakkal - Pustaka Komponen UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom Scrollspy Effect */
+        .spy-link.active {
+            color: #4338ca;
+            font-weight: 700;
+            border-left: 3px solid #4338ca;
+            padding-left: 1rem;
+            background-color: #f5f7ff;
+        }
+        /* Tooltip Style */
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Navbar dengan Dropdown -->
+    <nav class="bg-indigo-700 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold tracking-tight uppercase italic">Muh. Tawakkal</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-800">Utama</a>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="relative inline-block text-left group">
+                            <button class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 flex items-center transition-all">
+                                Komponen <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+                            </button>
+                            <div class="absolute right-0 w-48 mt-2 origin-top-right bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ring-1 ring-black ring-opacity-5">
+                                <div class="py-1">
+                                    <a href="#sec-alerts" class="block px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Alerts & Close</a>
+                                    <a href="#sec-accordion" class="block px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Accordion</a>
+                                    <a href="#sec-buttons" class="block px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Buttons & Progress</a>
+                                    <a href="#sec-extra" class="block px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Tooltips & Popovers</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar dengan Scrollspy Navigation -->
+        <aside class="w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Katalog UI</h3>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="#sec-alerts" class="spy-link block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 transition-all border-l-2 border-transparent">Alerts & Close</a>
+                <a href="#sec-accordion" class="spy-link block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 transition-all border-l-2 border-transparent">Accordion</a>
+                <a href="#sec-buttons" class="spy-link block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 transition-all border-l-2 border-transparent">Buttons & Progress</a>
+                <a href="#sec-extra" class="spy-link block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 transition-all border-l-2 border-transparent">Tooltips & Popovers</a>
+                <a href="#sec-table" class="spy-link block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 transition-all border-l-2 border-transparent">Table & Pagination</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 space-y-12">
+            
+            <header id="intro" class="border-b border-slate-200 pb-8">
+                <h1 class="text-4xl font-black text-slate-900 tracking-tight">Pustaka Komponen UI</h1>
+                <p class="text-slate-500 mt-2 text-lg">Dokumentasi elemen antaramuka untuk ekosistem digital <strong>Muh. Tawakkal</strong>.</p>
+            </header>
+
+            <!-- Section: Alerts & Close Button -->
+            <section id="sec-alerts" class="scroll-mt-24 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-indigo-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-slate-800">Alerts & Close Button</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div id="alert-success" class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl flex justify-between items-start transition-all duration-300">
+                            <div class="flex">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-emerald-800">Berjaya!</p>
+                                    <p class="text-xs text-emerald-700">Data telah dikemaskini ke dalam pelayan.</p>
+                                </div>
+                            </div>
+                            <button onclick="closeElement('alert-success')" class="text-emerald-400 hover:text-emerald-600 transition-colors">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <div id="alert-error" class="bg-rose-50 border border-rose-200 p-4 rounded-xl flex justify-between items-start transition-all duration-300">
+                            <div class="flex">
+                                <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-rose-800">Ralat Sistem</p>
+                                    <p class="text-xs text-rose-700">Sila cuba sebentar lagi atau hubungi admin.</p>
+                                </div>
+                            </div>
+                            <button onclick="closeElement('alert-error')" class="text-rose-400 hover:text-rose-600 transition-colors">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-center items-center space-y-4">
+                        <p class="text-sm text-slate-500 font-medium">Badges Status</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-indigo-600 text-white rounded-md text-[10px] font-black uppercase">Live</span>
+                            <span class="px-3 py-1 bg-amber-400 text-amber-900 rounded-md text-[10px] font-black uppercase">Pending</span>
+                            <span class="px-3 py-1 bg-slate-200 text-slate-700 rounded-md text-[10px] font-black uppercase">Archived</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Accordion -->
+            <section id="sec-accordion" class="scroll-mt-24 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-indigo-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-slate-800">Accordion & Collapse</h2>
+                </div>
+                <div class="max-w-3xl bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="border-b border-slate-100">
+                        <button onclick="toggleAccordion('acc-1')" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all">
+                            <span class="font-bold text-slate-800">Bagaimana cara mendaftar akaun baru?</span>
+                            <i id="icon-acc-1" class="fa-solid fa-plus text-indigo-600 transition-transform"></i>
+                        </button>
+                        <div id="acc-1" class="hidden p-6 text-sm text-slate-600 bg-indigo-50/30 border-t border-indigo-100 animate-fadeIn">
+                            Anda boleh mendaftar dengan menekan butang 'Profil' di bahagian navigasi dan memilih 'Daftar'. Sila sediakan alamat emel yang sah.
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="toggleAccordion('acc-2')" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all">
+                            <span class="font-bold text-slate-800">Adakah perkhidmatan ini percuma?</span>
+                            <i id="icon-acc-2" class="fa-solid fa-plus text-indigo-600 transition-transform"></i>
+                        </button>
+                        <div id="acc-2" class="hidden p-6 text-sm text-slate-600 bg-indigo-50/30 border-t border-indigo-100 animate-fadeIn">
+                            Ya, versi asas sistem Muh. Tawakkal adalah percuma untuk semua pelajar dan pendidik.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Buttons & Progress -->
+            <section id="sec-buttons" class="scroll-mt-24 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-indigo-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-slate-800">Buttons & Progress</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-tighter">Button Variants</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="px-6 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all active:scale-90">Simpan</button>
+                            <button class="px-6 py-2.5 border-2 border-indigo-600 text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition-all">Kembali</button>
+                            <button class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl hover:bg-rose-200 flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-tighter">Progress Bars</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-2">
+                                    <span>Memuatnaik Fail...</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                    <div class="bg-indigo-600 h-full rounded-full transition-all duration-1000" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-2">
+                                    <span>Langkah Terakhir</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full animate-pulse" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Tooltips & Popovers -->
+            <section id="sec-extra" class="scroll-mt-24 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-indigo-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-slate-800">Tooltips & Popovers</h2>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap gap-12 items-center justify-center">
+                    
+                    <!-- Tooltip -->
+                    <div class="text-center space-y-3">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Tooltip</p>
+                        <div class="tooltip relative inline-block">
+                            <button class="bg-slate-800 text-white px-4 py-2 rounded-lg text-sm">Lalu Sini</button>
+                            <span class="tooltiptext">Maklumat Tambahan!</span>
+                        </div>
+                    </div>
+
+                    <!-- Popover -->
+                    <div class="text-center space-y-3">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Popover</p>
+                        <div class="relative group inline-block">
+                            <button class="border-2 border-indigo-600 text-indigo-600 font-bold px-4 py-2 rounded-lg text-sm">Klik / Hover</button>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 p-4 bg-white border border-slate-200 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                                <h4 class="font-bold text-slate-900 border-b border-slate-100 pb-2 mb-2">Petua Sistem</h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed">Gunakan kekunci <strong>Ctrl+S</strong> untuk menyimpan kerja anda secara automatik ke dalam storan awan kami.</p>
+                                <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-slate-200 rotate-45"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Table & Pagination -->
+            <section id="sec-table" class="scroll-mt-24 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-indigo-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-slate-800">Table & Pagination</h2>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-900 text-white uppercase text-[11px] tracking-widest font-black">
+                                <tr>
+                                    <th class="px-6 py-5">Nama Dokumen</th>
+                                    <th class="px-6 py-5 text-center">Saiz</th>
+                                    <th class="px-6 py-5 text-center">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-indigo-50/50 transition-all">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-file-pdf text-red-500 mr-3 text-lg"></i>
+                                            <span class="text-sm font-semibold text-slate-700">Resume_Tawakkal_2026.pdf</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-center text-xs text-slate-500">1.2 MB</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-indigo-600 hover:text-indigo-900"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50 transition-all">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-file-word text-blue-500 mr-3 text-lg"></i>
+                                            <span class="text-sm font-semibold text-slate-700">Proposal_Projek.docx</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-center text-xs text-slate-500">450 KB</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-indigo-600 hover:text-indigo-900"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination Component -->
+                    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                        <span class="text-xs font-medium text-slate-500 italic">Paparan 1-2 dari 10 rekod</span>
+                        <nav class="flex items-center space-x-1">
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 cursor-not-allowed">
+                                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                            </button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold shadow-md">1</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-xs text-slate-600 hover:bg-indigo-50 transition-all">2</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-xs text-slate-600 hover:bg-indigo-50 transition-all">3</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-indigo-50 transition-all">
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-12 pb-8 text-center border-t border-slate-200">
+                <p class="text-xs text-slate-400 font-medium uppercase tracking-widest">
+                    &copy; 2026 Dibangunkan Oleh <span class="text-indigo-600 font-black">Muh. Tawakkal</span>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Toggle Accordion
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                icon.classList.replace('fa-plus', 'fa-minus');
+                icon.classList.add('rotate-180');
+            } else {
+                el.classList.add('hidden');
+                icon.classList.replace('fa-minus', 'fa-plus');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Close Elements (Alerts)
+        function closeElement(id) {
+            const el = document.getElementById(id);
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 300);
+        }
+
+        // Scrollspy Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.spy-link');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
